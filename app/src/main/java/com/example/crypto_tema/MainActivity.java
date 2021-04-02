@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         // generarea perechii de chei a reusit
 
-        // se cripteaza mesajul in clar folosindu-se cheia privata si algoritmul RSA
+        // se cripteaza mesajul in clar folosindu-se cheia publica si algoritmul RSA
         byte[] encodedMessage;
         try {
-            // se preia instanta 'cifrului de tip RSA' si se seteaza modul de criptare cu cheia privata
+            // se preia instanta 'cifrului de tip RSA' si se seteaza modul de criptare cu cheia publica
             Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
             // se cripteaza mesajul clar
             encodedMessage = cipher.doFinal(plainMessage.getBytes());
@@ -59,14 +59,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // se decripteaza mesajul in clar folosindu-se cheia publica si algoritmul RSA
+        // se decripteaza mesajul criptat folosindu-se cheia privata si algoritmul RSA
         String decodedMessage;
         try {
-            // se decripteaza mesajul in clar folosindu-se cheia publica si algoritmul RSA
-
-            // se preia instanta cifrului de tip RSA si se seteaza modul de decriptare cu cheia publica
+            // se preia instanta cifrului de tip RSA si se seteaza modul de decriptare cu cheia privata
             Cipher cipher = Cipher.getInstance("RSA");
-            cipher.init(Cipher.DECRYPT_MODE, publicKey);
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
             // se decripteaza mesajul criptat
             decodedMessage = new String(cipher.doFinal(encodedMessage), StandardCharsets.UTF_8);
@@ -120,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.layout_criptare_asimetrica);
-        //exempluCriptareAsimetricaFolosindRSA();
+        setContentView(R.layout.layout_criptare_asimetrica);
+        exempluCriptareAsimetricaFolosindRSA();
 
-        setContentView(R.layout.layout_aplicare_hash);
-        exempluHashFolosindSHA256();
+        //setContentView(R.layout.layout_aplicare_hash);
+        //exempluHashFolosindSHA256();
 
     }
 }
