@@ -18,6 +18,8 @@ import javax.crypto.Cipher;
 public class MainActivity extends AppCompatActivity {
 
     private void exempluCriptareAsimetricaFolosindRSA(){
+        // https://www.developer.com/mobile/android/android-encryption-with-the-android-cryptography-api/
+        // https://developer.android.com/reference/javax/crypto/package-summary
 
         // textul in clar
         String plainMessage = "Acesta este mesajul necriptat";
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void exempluHashFolosindSHA256(){
+        // https://developer.android.com/reference/java/security/MessageDigest
+        // https://developer.android.com/guide/topics/security/cryptography#java
 
         try {
             String clearPassword = "aceasta-este-o-parola-in-clar";
